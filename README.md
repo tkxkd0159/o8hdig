@@ -33,5 +33,24 @@ Recommend to use [Query DSL](https://docs.opensearch.org/latest/query-dsl/) for 
 ```
 # Check if ml feature is on 
 curl -X GET "http://localhost:9200/_cat/nodes?v&h=name,node.role,master"
+curl -X GET "http://localhost:9200/_plugins/_ml/stats"
+curl -X POST "http://localhost:9200/_plugins/_ml/_predict/kmeans?algorithm=kmeans" -H 'Content-Type: application/json' -d '
+{
+  "parameters": {
+    "centroids": [[1, 1], [2, 2]],
+    "iterations": 10,
+    "k": 2
+  },
+  "input_data": {
+    "column_metas": [
+      {"name": "x", "data_type": "FLOAT"},
+      {"name": "y", "data_type": "FLOAT"}
+    ],
+    "rows": [
+      {"values": [{"column_type": "FLOAT", "value": 1.1}, {"column_type": "FLOAT", "value": 1.1}]},
+      {"values": [{"column_type": "FLOAT", "value": 2.1}, {"column_type": "FLOAT", "value": 2.1}]}
+    ]
+  }
+}'
 ```
  
