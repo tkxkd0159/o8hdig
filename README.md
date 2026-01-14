@@ -29,4 +29,9 @@ Recommend to use [Query DSL](https://docs.opensearch.org/latest/query-dsl/) for 
   - **AI-powered search** (using AI models) : OpenSearch supports AI-powered search capabilities beyond vector embeddings. OpenSearch’s AI search enables search and ingestion flows to be enriched by any AI service to power the full range of AI-enhanced search use cases.
 
 
+## Quick Start
+```
+# Check if ml feature is on 
+curl -X GET "http://localhost:9200/_cat/nodes?v&h=name,node.role,master"
+```
  
